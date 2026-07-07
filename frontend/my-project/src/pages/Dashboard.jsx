@@ -13,7 +13,7 @@ import axios from "axios";
 import { userContext } from "../context/Userprovider";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import {API_BASE_URL} from '../config/api'
 const Dashboard = () => {
   const [totalTask, setTotaltask] = useState(0);
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -109,7 +109,7 @@ const Dashboard = () => {
 
   const fatchData = async () => {
     try {
-      const result = await axios.get("http://localhost:3000/user/task", {
+      const result = await axios.get(`${API_BASE_URL}/user/task`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -142,7 +142,7 @@ const Dashboard = () => {
       return;
     }
     try {
-      await axios.delete(`http://localhost:3000/user/task/delete/${id}`, {
+      await axios.delete(`${API_BASE_URL}/user/task/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -163,7 +163,7 @@ const Dashboard = () => {
         currentTask.status === "complited" ? "panding" : "complited";
 
       await axios.patch(
-        `http://localhost:3000/user/task/update/${id}`,
+        `${API_BASE_URL}/user/task/update/${id}`,
         {
           status: newStatus,
         },
@@ -198,7 +198,7 @@ const Dashboard = () => {
 
   const taskCount = async () => {
     try {
-      const result = await axios.get("http://localhost:3000/user/task/count", {
+      const result = await axios.get(`${API_BASE_URL}/user/task/count`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -220,7 +220,7 @@ const Dashboard = () => {
   const handelfilterPen = async () => {
     try {
       const result = await axios.get(
-        "http://localhost:3000/user/task/filter?status=panding",
+        `${API_BASE_URL}/user/task/filter?status=panding`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -247,7 +247,7 @@ const Dashboard = () => {
   const handelfiltercom = async () => {
     try {
       const result = await axios.get(
-        "http://localhost:3000/user/task/filter?status=complited",
+        `${API_BASE_URL}/user/task/filter?status=complited`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,

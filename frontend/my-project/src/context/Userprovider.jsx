@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export const userContext = createContext();
+import {API_BASE_URL} from "../config/api";
 
 const Userprovider = ({ children }) => {
   const [user, setUser] = useState(()=>{
@@ -11,7 +12,8 @@ const Userprovider = ({ children }) => {
     return saveData ? JSON.parse(saveData):null
   })
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  
+const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [logData, setLogdata] = useState({
     email: "",
@@ -39,7 +41,7 @@ const Userprovider = ({ children }) => {
     }
     try {
       const result = await axios.post(
-        "http://localhost:3000/user/login",
+        `${API_BASE_URL}/user/login`,
         logData,
       );
       if (result.status !== 200) {
@@ -105,7 +107,7 @@ console.log(user);
     }
     try {
       const result = await axios.post(
-        "http://localhost:3000/user/register",
+        `${API_BASE_URL}/user/register`,
         regData,
       );
       if (result.status !== 201) {

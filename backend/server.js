@@ -11,7 +11,7 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 const port = process.env.PORT||8000;
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:process.env.FRONTEND_URL||"http://localhost:5173",
     methods:"GET, POST, DELETE, PATCH, PUT"
 }))
 app.use(express.json());

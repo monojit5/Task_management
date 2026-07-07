@@ -4,7 +4,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import { userContext } from "../context/Userprovider";
-
+import {API_BASE_URL} from '../config/api'
 const Taskmodel = () => {
   const [loadingdata, setLoadingdata] = useState(false)
   const { user } = useContext(userContext);
@@ -25,7 +25,7 @@ const Taskmodel = () => {
     setLoading(true);
     try {
       const result = await axios.post(
-        "http://localhost:3000/user/task",
+        `${API_BASE_URL}/user/task`,
         { taskName },
         {
           headers: {
